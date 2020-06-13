@@ -1,0 +1,30 @@
+<div>
+<form [formGroup]="searchForm" (ngSubmit)="searchNews()">
+    <mat-form-field class="example-full-width">
+        <mat-label>Primary Search</mat-label>
+        <input matInput formControlName="primarySearch" >
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="myDatePicker" formControlName="myDatePicker">
+        <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatePicker></mat-datepicker>
+      </mat-form-field><br>      
+
+    <button mat-button type="submit">search</button>    
+</form>
+</div>
+<hr>
+<div *ngIf="newsSearchHits$ | async as newsSearchHits">
+<h3>hits: {{ newsSearchHits.hits }}</h3>
+<h3>time: {{ newsSearchHits.time }}</h3>
+<h3>offset: {{ newsSearchHits.offset }}</h3>
+<hr>
+<ul>
+    <li *ngFor="let item of (newsDocs$ | async); index as i" id="{{ item.pub_date}}">
+        {{ item.pub_date |date:'medium' }} <br><br>
+        <a href="{{ item.web_url }}" target="_blank">{{ item.web_url }}</a><br><br>
+        {{ item.headline.main}} <br><br>
+        {{ item.lead_paragraph}} <br><br><br>
+    </li>
+</ul>
