@@ -18,6 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatNativeDateModule} from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import * as moment from 'moment';
 
 // Angular Fire
 
@@ -26,13 +27,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsComponent } from './news/news.component';
-import { TestComponent } from './news/test/test.component';
+import { ExchangeComponent } from './exchange/exchange.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewsComponent,
-    TestComponent
+    ExchangeComponent
   ],
   imports: [
     BrowserModule,

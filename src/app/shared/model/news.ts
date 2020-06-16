@@ -2,9 +2,7 @@ import{ INewYorkTimesFullJSON, INewYorkTimesResponse, INewYorkTimes, INewYorkTim
 import * as moment from 'moment';
 
 export class News {
-        //public rawResponse: INewYorkTimes
         public rawResponse: INewYorkTimesFullJSON
-        //public rawResponse: INewYorkTimesResponse
    
         constructor(data: INewYorkTimesFullJSON) {
           this.rawResponse = data

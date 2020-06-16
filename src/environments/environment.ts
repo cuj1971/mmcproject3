@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiKey: 'B2O7riG2DAbmoBannY9R03ytV2AiACpP'
+  newsApiKey: 'B2O7riG2DAbmoBannY9R03ytV2AiACpP',
+  exchApiKey: 'dfbfd412b322ab00e019c615e62dcb3b'
 };
 
 /*

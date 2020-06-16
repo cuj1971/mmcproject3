@@ -14,6 +14,7 @@ import { INewYorkTimesResponseMeta, INewYorkTimesResponseDoc } from '../shared/m
 export class NewsComponent implements OnInit {
 
   searchForm: FormGroup;
+  page: number = 0;
   public mynews$: Observable<News>;
   public newsSearchHits$: Observable<INewYorkTimesResponseMeta>;
   public newsDocs$: Observable<INewYorkTimesResponseDoc[]>;
@@ -22,10 +23,26 @@ export class NewsComponent implements OnInit {
 
   }
 
-  searchNews() {
-    console.log(`in searchNews() ${this.searchForm.value.primarySearch}, ${this.searchForm.value.secondarySearch}`);
+  searchNews(setpage: string) {
+    console.log(
+      `in searchNews(),
+      ${this.searchForm.value.primarySearch}, 
+      ${this.searchForm.value.startDatePicker}, 
+      ${this.searchForm.value.endDatePicker},
+      ${setpage}`
+      );
 
-    this.mynews$ = this.mynews.fetchAndGetNews$(this.searchForm.value.primarySearch, this.searchForm.value.myDatePicker);
+      if (setpage === 'next') {
+         this.page = this.page + 1;
+        } 
+      else if (setpage === 'prev') {
+          this.page = this.page - 1;
+        }
+      else {
+          this.page = 0;
+        }
+
+    this.mynews$ = this.mynews.fetchAndGetNews$(this.searchForm.value.primarySearch, this.searchForm.value.startDatePicker, this.searchForm.value.endDatePicker, this.page);
 
     this.newsSearchHits$ = this.mynews$.pipe(
       map(newsSearchHits => ({
@@ -51,10 +68,15 @@ export class NewsComponent implements OnInit {
     )
   }
 
+  searchExchange(e) {
+    console.log("searchExchange", e);
+  }
+
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       primarySearch: ['Trump', Validators.required],
-      myDatePicker: ['01/01/2020', Validators.required]
+      startDatePicker: ['01/01/2020', Validators.required],
+      endDatePicker: ['31/12/2020', Validators.required]
     })
   }
 

@@ -1,0 +1,11 @@
+<p>exchange works!</p>
+
+<div *ngIf="mybase$ | async as mybase">
+    <h3>base: {{ mybase.base }}</h3>
+    <h3>start: {{ mybase.start_at }}</h3>
+    <h3>end: {{ mybase.end_at }}</h3>
+</div>
+<hr>
+
+
+{{ myrates$ | async | json}}
